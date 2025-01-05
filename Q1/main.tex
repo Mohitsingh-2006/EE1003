@@ -1,4 +1,4 @@
-\let\negmedspace\undefined
+0\let\negmedspace\undefined
 \let\negthickspace\undefined
 \documentclass[journal]{IEEEtran}
 \usepackage[a5paper, margin=10mm, onecolumn]{geometry}
@@ -96,6 +96,7 @@
     \begin{align}
     y = \frac{1}{2}\brak{\ln{\frac{4}{3}\brak{1-\frac{1}{x^2}}}}
     \end{align}
+    \item \textbf{NOTE:-} We are not using finite difference because the graph is discontinues at x=1 .So, when we find $\frac{dy}{dx}$ its value is becoming too large that we are getting a significant error in calculating $\frac{dy}{dx}$.So,We have to use another method.
     \item \textbf{CODING LOGIC:} The solution for the differential equation can be graphically solved using coding by using below logic :\textbf{Runga-kutta Method}
 \begin{align} 
 	h&=0.001 \\
@@ -111,6 +112,7 @@
 	y_{n+1} = y_n + k
 \end{align}
 \end{enumerate}
+
 \end{enumerate}
 
 \begin{figure}[h!]
