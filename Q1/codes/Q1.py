@@ -43,6 +43,3 @@ plt.ylabel("y-axis")
 plt.legend(handles=[sim_line, theory_line])
 plt.grid(True)
 plt.show()
-
-
-
