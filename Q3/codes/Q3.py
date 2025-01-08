@@ -38,7 +38,6 @@ for i in range(n):
 plt.fill_between(x, y, color="skyblue", alpha=0.4, label="Trapezoidal Area")
 
 # Labels and legend
-plt.title(f"Area under curve (Trapezoidal Rule, n={n})")
 plt.xlabel("x")
 plt.ylabel("y")
 plt.legend()
