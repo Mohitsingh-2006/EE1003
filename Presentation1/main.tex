@@ -180,6 +180,11 @@ Substituting $\frac{dy}{dx}$,
 \end{figure}
 \textbf{Note}:- Finite difference method fails here because $\frac{dy}{dx}$ is too large near x=1.Which creates a significant error in calculating $y_{n+1}$
 \end{frame}
+\begin{frame}
+\frametitle{C-Code For Finite difference method}
+\lstinputlisting[language=C]{codes/Finite.c}
+
+\end{frame}
 
 \section{Runga-kutta Method}
 \subsection{Runga-kutta Method}
@@ -189,7 +194,7 @@ Substituting $\frac{dy}{dx}$,
 Let ,
 \begin{align} 
 	h=0.001 \\
-	\frac{dy}{dx} = f\brak{x_n} \\
+	\frac{dy}{dx_n} = f\brak{x_n} \\
 \end{align}
 Then ,
 \begin{align} 
@@ -214,10 +219,14 @@ Then ,
    \includegraphics[width=0.7\linewidth]{figs/Figure_1.png}
    \label{Graph by Runga-Kutta Method}
 \end{figure}
-   
+\textbf{Note}:- Runga-Kutta Method is computationally expensive because of its 4th order
 
 \end{frame}
+\begin{frame}
+\frametitle{C-Code For Runga-Kutta  method}
+\lstinputlisting[language=C]{codes/Runga.c}
 
+\end{frame}
 
 
 \end{document}

@@ -45,22 +45,26 @@
 \headcommand {\beamer@subsectionentry {0}{7}{1}{8}{Plot by Finite Difference Method}}
 \headcommand {\slideentry {7}{1}{1}{8/8}{Plot by Finite Difference Method}{0}}
 \headcommand {\beamer@framepages {8}{8}}
-\headcommand {\beamer@sectionpages {8}{8}}
-\headcommand {\beamer@subsectionpages {8}{8}}
-\headcommand {\sectionentry {8}{Runga-kutta Method}{9}{Runga-kutta Method}{0}}
-\headcommand {\beamer@subsectionpages {9}{8}}
-\headcommand {\beamer@subsectionentry {0}{8}{1}{9}{Runga-kutta Method}}
-\headcommand {\slideentry {8}{1}{1}{9/9}{Runga-kutta Method}{0}}
+\headcommand {\slideentry {7}{1}{2}{9/9}{Plot by Finite Difference Method}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\beamer@sectionpages {9}{9}}
-\headcommand {\beamer@subsectionpages {9}{9}}
-\headcommand {\sectionentry {9}{Plot by Runga-Kutta Method}{10}{Plot by Runga-Kutta Method}{0}}
+\headcommand {\beamer@sectionpages {8}{9}}
+\headcommand {\beamer@subsectionpages {8}{9}}
+\headcommand {\sectionentry {8}{Runga-kutta Method}{10}{Runga-kutta Method}{0}}
 \headcommand {\beamer@subsectionpages {10}{9}}
-\headcommand {\beamer@subsectionentry {0}{9}{1}{10}{Plot by Runga-Kutta Method}}
-\headcommand {\slideentry {9}{1}{1}{10/10}{Plot by Runga-Kutta Method}{0}}
+\headcommand {\beamer@subsectionentry {0}{8}{1}{10}{Runga-kutta Method}}
+\headcommand {\slideentry {8}{1}{1}{10/10}{Runga-kutta Method}{0}}
 \headcommand {\beamer@framepages {10}{10}}
-\headcommand {\beamer@partpages {1}{10}}
-\headcommand {\beamer@subsectionpages {10}{10}}
 \headcommand {\beamer@sectionpages {10}{10}}
-\headcommand {\beamer@documentpages {10}}
-\headcommand {\gdef \inserttotalframenumber {10}}
+\headcommand {\beamer@subsectionpages {10}{10}}
+\headcommand {\sectionentry {9}{Plot by Runga-Kutta Method}{11}{Plot by Runga-Kutta Method}{0}}
+\headcommand {\beamer@subsectionpages {11}{10}}
+\headcommand {\beamer@subsectionentry {0}{9}{1}{11}{Plot by Runga-Kutta Method}}
+\headcommand {\slideentry {9}{1}{1}{11/11}{Plot by Runga-Kutta Method}{0}}
+\headcommand {\beamer@framepages {11}{11}}
+\headcommand {\slideentry {9}{1}{2}{12/12}{Plot by Runga-Kutta Method}{0}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\beamer@partpages {1}{12}}
+\headcommand {\beamer@subsectionpages {11}{12}}
+\headcommand {\beamer@sectionpages {11}{12}}
+\headcommand {\beamer@documentpages {12}}
+\headcommand {\gdef \inserttotalframenumber {12}}
