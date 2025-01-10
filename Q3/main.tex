@@ -52,7 +52,7 @@
 \begin{enumerate}
 \item Find the equation of a curve passing through the point \brak{0,0} and whose differential equation
  is $y^{'} = e^x\sin{x}$\\
-\textbf{Solution:-}\\
+\textbf{Theoritical Solution:-}\\
 
 The given differential equation is:
 \begin{align}
@@ -104,10 +104,43 @@ The final solution is:
 \begin{align}
 y &= \frac{e^x (\sin{x} - \cos{x})}{2} + \frac{1}{2}
 \end{align}
-\textbf{CODING LOGIC:-}\\
 
+\textbf{Laplace-Method}
 
+\begin{align}
+y^{'} = e^x \sin{x}
+\end{align}
 
+Taking Laplace on both sides
+\begin{align}
+\mathcal{L}\brak{y^{'}} = \mathcal{L}\brak{e^x \sin{x}}
+\end{align}
+Let,
+\begin{align}
+\mathcal{L}\brak{y^{'}} = sY\brak{s} \text{ and } \mathcal{L}\brak{e^x \sin{x}} = G\brak{s}
+\end{align}
+Subsituting in 1.16,
+\begin{align}
+sY\brak{s} = G\brak{s}\\
+\frac{Y\brak{s}}{G\brak{s}}=\frac{1}{s}
+\end{align}
+Applying bi-linear Transformation
+\begin{align}
+s = \frac{2}{h}\brak{\frac{1+z^{-1}}{1-z^{-1}}}\\
+\end{align}
+Subsituting in 1.19,
+\begin{align}
+\frac{Y\brak{s}}{G\brak{s}}=\frac{h}{2}\brak{\frac{1+z^{-1}}{1-z^{-1}}}\\
+\brak{1-z^{-1}}Y\brak{s}=\frac{h}{2}\brak{1+z^{-1}}G\brak{s}\\
+Y\brak{s} - z^{-1}Y\brak{s} = \frac{h}{2}\brak{G\brak{s}-z^{-1}G{s}}
+\end{align}
+Then putting the value of $Y\brak{s}$ and $G\brak{s}$\\
+Final expression :-
+\begin{align}
+y_n - y_{n-1} = \frac{h}{2}\brak{e^x_n \sin{x_n} + e^{x-1}_n \sin{x_{n-1}}}
+\end{align}
+
+\textbf{Trapezoid Rule :-}\\
 
 The trapezoidal rule is as follows.
 \begin{align}
@@ -120,8 +153,8 @@ The trapezoidal rule is as follows.
 \begin{figure}[h!]
    \centering
    \includegraphics[width=0.7\linewidth]{figs/Figure_1.png}
-\end{figure}
-   
+\end{figure}   
+ 
 
 \end{enumerate}
 \end{document}
