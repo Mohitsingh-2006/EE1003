@@ -97,19 +97,27 @@ Define the function:
         \item Tolerance  = $1 \times 10^{-6}$
     \end{enumerate}
     
-    \textbf{Initialize starting points:}
+    \textbf{Initialize starting points}
     \begin{align}
     \text{start\_points} = \text{linspace}(0, 2\pi, 50)
     \end{align}
-    A range of 50 equally spaced starting points between $0$ and $2\pi$ is chosen to search for critical points.
-
-    \textbf{Use C functions for gradient descent and ascent:}
+    A range of 50 equally spaced starting points between $0$ and $2\pi$ is chosen to search for critical points.\\
     
-    \textbf{Find critical points:}
-    For each starting point, we use both gradient descent and ascent to find the corresponding critical points:
+    \textbf{Use C functions for gradient descent and ascent}\\
+     And Value of $x$ changes as:-
+     \begin{align}
+     \eta = 0.01
+     \end{align}
+     \begin{align}
+     x_{n+1} = x_{n} + \eta\frac{dy}{dx_n} \text{ ,when gradient is positive}\\
+     x_{n+1} = x_{n} - \eta\frac{dy}{dx_n} \text{ ,when gradient is negative}
+     \end{align}
+     Change in value of x depends on gradient ,\\
+     \textbf{Find critical points - }
+     For each starting point, we use both gradient descent and ascent to find the corresponding critical points:
 
-    \textbf{Classify critical points:}
-    \begin{enumerate}
+     \textbf{Classify critical points:}
+     \begin{enumerate}
         \item Minima are identified by checking the slope:
         \begin{align}
         f(x + 1 \times 10^{-3}) - f(x - 1 \times 10^{-3}) > 0
