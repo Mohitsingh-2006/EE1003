@@ -11,7 +11,7 @@ double gradient_descent(double x0, double learning_rate, int max_iter, double to
     double x = x0;
     for (int i = 0; i < max_iter; i++) {
         double grad = f_derivative(x);
-        if (fabs(grad) < tol) {  // Convergence condition
+        if (fabs(grad) < tol) {  
             break;
         }
         x -= learning_rate * grad;  // Gradient descent step
@@ -24,7 +24,7 @@ double gradient_ascent(double x0, double learning_rate, int max_iter, double tol
     double x = x0;
     for (int i = 0; i < max_iter; i++) {
         double grad = f_derivative(x);
-        if (fabs(grad) < tol) {  // Convergence condition
+        if (fabs(grad) < tol) {  // Convergence
             break;
         }
         x += learning_rate * grad;  // Gradient ascent step
