@@ -122,13 +122,81 @@ The method converges superlinearly and does not require the derivative $ f'(x) $
 
 \end{enumerate}
 
-
-
-
-\end{enumerate}
 \begin{figure}[h!]
    \centering
    \includegraphics[width=0.7\linewidth]{figs/Figure_1.png}
 \end{figure}
+\begin{center}
+\textbf{Another Method}
+\end{center}
+\textbf{Finding Roots using Eigenvalues}\\
 
+
+
+\begin{enumerate}
+\item Matrix Representation \\
+The quadratic equation 
+\begin{align}
+\sqrt{2}x^2 + 7x + 5\sqrt{2} = 0
+\end{align}
+is rewritten in matrix form:
+\begin{align}
+\text{Matrix} =
+\myvec{0 & -\frac{c}{a} \\
+1 & -\frac{b}{a}
+}
+\end{align}
+
+\begin{align}
+a = \sqrt{2}, \quad b = 7, \quad c = 5\sqrt{2}.
+\end{align}
+
+Substituting the values of $a,b$ and $c$, the matrix becomes:
+\begin{align}
+\text{Matrix} =
+\myvec{0 & -5 \\
+1 & -\frac{7}{\sqrt{2}}
+}
+\end{align}
+
+\item Eigenvalue Calculation \\
+\begin{align}
+\abs{\lambda I - 
+\myvec{0 & -\frac{c}{a} \\
+1 & -\frac{b}{a}}} = 0
+\end{align}
+where $\lambda$ represents the eigenvalues.
+
+\item Characteristic Equation \\
+The determinant is expanded as follows:
+\begin{align}
+\abs{\myvec{\lambda & \frac{c}{a} \\
+-1 & \lambda + \frac{b}{a}}}
+= 0.
+\end{align}
+Simplifying:
+\begin{align}
+\lambda^2 + \frac{b}{a}\lambda + \frac{c}{a} = 0.
+\end{align}
+
+Substitute $a = \sqrt{2}$, $b = 7$, and $c = 5\sqrt{2}$:
+
+\begin{align}
+\lambda^2 + \frac{7}{\sqrt{2}}\lambda + 5 = 0.
+\end{align}
+\item Final Roots\\
+
+\begin{align}
+\lambda_1 = -2\sqrt{2} , \quad \lambda_2 = -5\sqrt{2}.
+\end{align}
+
+\end{enumerate}
+
+
+
+\begin{figure}[h!]
+   \centering
+   \includegraphics[width=0.7\linewidth]{figs/Figure_2.png}
+\end{figure}
+\end{enumerate}
 \end{document}
