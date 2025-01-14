@@ -126,10 +126,9 @@ The method converges superlinearly and does not require the derivative $ f'(x) $
    \centering
    \includegraphics[width=0.7\linewidth]{figs/Figure_1.png}
 \end{figure}
-\begin{center}
-\textbf{Another Method}
-\end{center}
-\textbf{Finding Roots using Eigenvalues}\\
+
+
+\textbf{CODING LOGIC FOR FINDING EIGENVALUES}\\
 
 
 
@@ -158,39 +157,23 @@ Substituting the values of $a,b$ and $c$, the matrix becomes:
 1 & -\frac{7}{\sqrt{2}}
 }
 \end{align}
+\item Trace = sum of diagonal element
 
-\item Eigenvalue Calculation \\
-\begin{align}
-\abs{\lambda I - 
-\myvec{0 & -\frac{c}{a} \\
-1 & -\frac{b}{a}}} = 0
-\end{align}
-where $\lambda$ represents the eigenvalues.
+\item The discriminant is calculated as:
+  \begin{align}
+  \text{Discriminant} = (\text{Trace})^2 - 4 \times (\text{Determinant})
+  \end{align}
 
-\item Characteristic Equation \\
-The determinant is expanded as follows:
-\begin{align}
-\abs{\myvec{\lambda & \frac{c}{a} \\
--1 & \lambda + \frac{b}{a}}}
-= 0.
-\end{align}
-Simplifying:
-\begin{align}
-\lambda^2 + \frac{b}{a}\lambda + \frac{c}{a} = 0.
-\end{align}
 
-Substitute $a = \sqrt{2}$, $b = 7$, and $c = 5\sqrt{2}$:
-
+\item The value of $\lambda$ will be given by\\
 \begin{align}
-\lambda^2 + \frac{7}{\sqrt{2}}\lambda + 5 = 0.
-\end{align}
-\item Final Roots\\
+  \lambda_1 = \frac{\text{Trace} + \sqrt{\text{Discriminant}}}{2}, 
+  \lambda_2 = \frac{\text{Trace} - \sqrt{\text{Discriminant}}}{2}
+  \end{align}
 
-\begin{align}
-\lambda_1 = -\sqrt{2} , \quad \lambda_2 = \frac{-5}{\sqrt{2}}.
-\end{align}
 
 \end{enumerate}
+
 
 
 
