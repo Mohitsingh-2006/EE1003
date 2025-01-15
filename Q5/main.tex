@@ -129,8 +129,8 @@ The method converges superlinearly and does not require the derivative $ f'(x) $
 
 
 \textbf{CODING LOGIC FOR FINDING EIGENVALUES :-}\\
-\begin{enumerate}
-\item Matrix Representation \\
+
+
 The quadratic equation 
 \begin{align}
 \sqrt{2}x^2 + 7x + 5\sqrt{2} = 0
@@ -147,31 +147,50 @@ is rewritten in matrix form:
 a = \sqrt{2}, \quad b = 7, \quad c = 5\sqrt{2}.
 \end{align}
 
-Substituting the values of $a,b$ and $c$, the matrix becomes:
+Substituting the values of $a,b$ and $c$, the matrix becomes:\\
+Let
 \begin{align}
-\text{Matrix} =
+\text{A} =
 \myvec{0 & -5 \\
 1 & -\frac{7}{\sqrt{2}}
 }
 \end{align}
-\item Trace = sum of diagonal element
-
-\item The discriminant is calculated as:
-  \begin{align}
-  \text{Discriminant} = (\text{Trace})^2 - 4 \times (\text{Determinant})
-  \end{align}
 
 
-\item The value of $\lambda$ will be given by\\
-\begin{align}
-  \lambda_1 = \frac{\text{Trace} + \sqrt{\text{Discriminant}}}{2}, 
-  \lambda_2 = \frac{\text{Trace} - \sqrt{\text{Discriminant}}}{2}
-  \end{align}
+
+
+\textbf{QR-Algorithm}\\
+The QR method is an iterative algorithm used to compute the eigenvalues of a square matrix $A$. The algorithm works as follows:
+\begin{enumerate}
+\item Initialization \\
+Let $A_0 = A $, where $A$ is the given matrix.
+
+\item QR Decomposition \\
+For each iteration $ k = 0, 1, 2, \dots $:
+\begin{enumerate}
+    \item Compute the QR decomposition of \( A_k \), such that:
+    \begin{align}
+    A_k = Q_k R_k
+    \end{align}
+    where:
+    \begin{enumerate}
+        \item $Q_k $ is an orthogonal matrix ($ Q_k^\top Q_k = I $).
+        \item $ R_k $ is an upper triangular matrix.
+    \end{enumerate}
+    The decomposition ensures $ A_k = Q_k R_k $.
+
+    \item Form the next matrix \( A_{k+1} \) as:
+    \begin{align}
+    A_{k+1} = R_k Q_k
+    \end{align}
+\end{enumerate}
+
+\item Convergence\\
+Repeat Step 2 until $ A_k $ converges to an upper triangular matrix $ T $. The diagonal entries of $T$ are the eigenvalues of $A$.\\
+\item The eigenvalues of matrix will be the roots of the equation.
 
 
 \end{enumerate}
-
-
 
 
 \begin{figure}[h!]

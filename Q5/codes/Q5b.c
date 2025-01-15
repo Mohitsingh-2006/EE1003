@@ -1,54 +1,76 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-typedef struct {
-    double root1;
-    double root2;
-} roots;
+#define TOL 1e-10
+#define MAX_ITER 100
 
-double det(double matrix[2][2]) {
-    return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+// Function to perform QR decomposition
+void qr_decomposition(double M[2][2], double Q[2][2], double R[2][2]) {
+    double norm = sqrt(M[0][0] * M[0][0] + M[1][0] * M[1][0]);
+
+    // Compute Q
+    Q[0][0] = M[0][0] / norm;
+    Q[1][0] = M[1][0] / norm;
+    Q[0][1] = -M[1][0] / norm;
+    Q[1][1] = M[0][0] / norm;
+
+    // Compute R
+    R[0][0] = Q[0][0] * M[0][0] + Q[1][0] * M[1][0];
+    R[0][1] = Q[0][0] * M[0][1] + Q[1][0] * M[1][1];
+    R[1][0] = 0;
+    R[1][1] = Q[0][1] * M[0][1] + Q[1][1] * M[1][1];
 }
 
-double trace(double matrix[2][2]) {
-    return matrix[0][0] + matrix[1][1];
-}
+// Function to compute the eigenvalues using QR decomposition
+void find_eigenvalues(double a, double b, double c, double *eigen1, double *eigen2) {
+    double M[2][2] = {
+        {0, -c / a},
+        {1, -b / a}
+    };
 
-roots eigen_values(double a, double b, double c) {
-    double matrix[2][2];
-    matrix[0][0] = 0;
-    matrix[1][0] = 1;
-    matrix[0][1] = -c / a;
-    matrix[1][1] = -b / a;
+    double Q[2][2], R[2][2];
+    int iter = 0;
+    bool converged = false;
 
-    roots root;
-    double deter = det(matrix);
-    double tr = trace(matrix);
-    double discriminant = tr * tr - 4 * deter;
+    while (iter < MAX_ITER) {
+        qr_decomposition(M, Q, R);
 
-    if (fabs(discriminant) < 1e-10) {
-        discriminant = 0; // Handle numerical precision errors
+        // Update M = R * Q
+        double new_M[2][2];
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                new_M[i][j] = 0;
+                for (int k = 0; k < 2; k++) {
+                    new_M[i][j] += R[i][k] * Q[k][j];
+                }
+            }
+        }
+
+        // Check for convergence
+        if (fabs(new_M[1][0]) < TOL) {
+            converged = true;
+            break;
+        }
+
+        // Update M
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                M[i][j] = new_M[i][j];
+            }
+        }
+
+        iter++;
     }
-    if (discriminant < 0) {
-        printf("Roots do not exist\n");
-        exit(1);
+
+    if (converged) {
+        *eigen1 = M[0][0];
+        *eigen2 = M[1][1];
+    } else {
+        printf("QR decomposition did not converge within the iteration limit.\n");
+        *eigen1 = NAN;
+        *eigen2 = NAN;
     }
-    
-    root.root1 = (tr + sqrt(discriminant)) / 2;
-    root.root2 = (tr - sqrt(discriminant)) / 2;
-
-    return root;
-}
-
-int main() {
-    double a = sqrt(2);
-    double b = 7;
-    double c = 5 * sqrt(2);
-
-    roots result = eigen_values(a, b, c);
-    printf("Root 1: %.3f, Root 2: %.3f\n", result.root1, result.root2);
-
-    return 0;
 }
 
