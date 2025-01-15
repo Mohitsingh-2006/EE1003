@@ -155,12 +155,49 @@ Let
 1 & -\frac{7}{\sqrt{2}}
 }
 \end{align}
+\textbf{QR-DECOMPOSITION:-GRAM-SCHMIDT METHOD}\\
 
+
+
+\begin{enumerate}
+
+\item QR decomposition 
+\begin{align}
+A = QR
+\end{align}
+\begin{enumerate}
+    \item $Q$ is an $ m \times n $ orthogonal matrix
+    \item $R$ is an $n \times n$ upper triangular matrix.
+\end{enumerate}
+Given a matrix $ A = [a_1, a_2, \dots, a_n] $, where each $ a_i $ is a column vector of size $ m \times 1 $.
+
+\item Normalize the first column of $A$:
+\begin{align}
+q_1 = \frac{a_1}{\norm{a_1}}
+\end{align}
+
+\item  For each subsequent column $ a_i $, subtract the projections of the previously obtained orthonormal vectors from $ a_i $ :
+\begin{align}
+a_i' = a_i - \sum_{k=1}^{i-1} \langle a_i, q_k \rangle q_k
+\end{align}
+Normalize the result to obtain the next column of \( Q \):
+\begin{align}
+q_i = \frac{a_i'}{\norm{a_i'}}
+\end{align}
+
+Repeat this process for all columns of \( A \).
+
+\item Finding $R$:- \\
+After constructing the ortho-normal columns $ q_1, q_2, \dots, q_n $ of $Q$, we can compute the elements of $R$ by taking the dot product of the original columns of $A$ with the columns of $Q$:
+
+\begin{align}
+    r_{ij} = \langle a_j, q_i \rangle \text{ , for  }  i \leq j 
+\end{align}
+\end{enumerate}
 
 
 
 \textbf{QR-Algorithm}\\
-The QR method is an iterative algorithm used to compute the eigenvalues of a square matrix $A$. The algorithm works as follows:
 \begin{enumerate}
 \item Initialization \\
 Let $A_0 = A $, where $A$ is the given matrix.

@@ -73,4 +73,3 @@ void find_eigenvalues(double a, double b, double c, double *eigen1, double *eige
         *eigen2 = NAN;
     }
 }
-
