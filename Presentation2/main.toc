@@ -3,8 +3,8 @@
 \beamer@subsectionintoc {3}{1}{Solution}{4}{0}{2}
 \beamer@sectionintoc {4}{NEWTON-RAPHSON METHOD}{5}{0}{3}
 \beamer@subsectionintoc {4}{1}{NEWTON-RAPHSON METHOD}{5}{0}{3}
-\beamer@sectionintoc {5}{Plot by Finite Difference Method}{6}{0}{4}
-\beamer@subsectionintoc {5}{1}{Plot by Finite Difference Method}{6}{0}{4}
+\beamer@sectionintoc {5}{Plot by NEWTON-RAPSHON}{6}{0}{4}
+\beamer@subsectionintoc {5}{1}{Plot by NEWTON-RAPSHON}{6}{0}{4}
 \beamer@sectionintoc {6}{FINDING ROOTS USING :-EIGENVALUES }{7}{0}{5}
 \beamer@subsectionintoc {6}{1}{FINDING ROOTS USING :-EIGENVALUES}{7}{0}{5}
 \beamer@sectionintoc {7}{QR-DECOMPOSITION:-GRAM-SCHMIDT METHOD}{8}{0}{6}
