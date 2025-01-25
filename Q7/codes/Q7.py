@@ -1,49 +1,50 @@
-import random
-from collections import Counter
 import ctypes
-
-# Load the compiled C library
-coin_toss_lib = ctypes.CDLL('./coin_toss.so')
-
-# Define the C function argument and return types
-coin_toss_lib.calculate_net_money.argtypes = [ctypes.c_char_p]
-coin_toss_lib.calculate_net_money.restype = ctypes.c_double
-
-# Simulation Parameters
-num_tosses = 4  # Number of coin tosses
-num_simulations = 100000  # Number of trials for accurate probabilities
-
-# Function to calculate net money using the C function
-def calculate_net_money(outcome):
-    outcome_c = ctypes.c_char_p(outcome.encode('utf-8'))  # Convert Python string to C string
-    return coin_toss_lib.calculate_net_money(outcome_c)
-
-# Generate random outcomes and calculate net money
-outcomes = []
-for _ in range(num_simulations):
-    outcome = ''.join(random.choice(['H', 'T']) for _ in range(num_tosses))  # Generate random outcome
-    net_money = calculate_net_money(outcome)  # Call the C function
-    outcomes.append(net_money)
-
-# Count occurrences of each net money
-counts = Counter(outcomes)
-
-# Calculate probabilities
-probabilities = {money: count / num_simulations for money, count in counts.items()}
-
-# Display the results
-print("Net Money and Their Probabilities:")
-for money, prob in sorted(probabilities.items()):
-    print(f"Net Money: ₹{money:.1f}, Probability: {prob:.4f}")
-
-# Optionally, plot the results
 import matplotlib.pyplot as plt
 
-plt.bar(probabilities.keys(), probabilities.values(), color='skyblue', edgecolor='black')
-plt.xlabel("Net Money (₹)")
+# Load the shared library
+lib = ctypes.CDLL('./pmf_cdf_calculator.so')
+
+# Define the function signatures
+NUM_VALUES = 5
+lib.get_pmf.argtypes = [ctypes.POINTER(ctypes.c_double)]
+lib.get_cdf.argtypes = [ctypes.POINTER(ctypes.c_double)]
+lib.get_values.argtypes = [ctypes.POINTER(ctypes.c_double)]
+
+# Allocate arrays for PMF, CDF, and values
+pmf = (ctypes.c_double * NUM_VALUES)()
+cdf = (ctypes.c_double * NUM_VALUES)()
+values = (ctypes.c_double * NUM_VALUES)()
+
+# Call C functions to calculate PMF, CDF, and values
+lib.get_pmf(pmf)
+lib.get_cdf(cdf)
+lib.get_values(values)
+
+# Convert the C arrays to Python lists
+pmf = list(pmf)
+cdf = list(cdf)
+values = list(values)
+
+# Plot PMF
+plt.figure(figsize=(10, 6))
+plt.subplot(2, 1, 1)
+plt.stem(values, pmf, basefmt=" ", use_line_collection=True, linefmt='blue', markerfmt='bo', label="PMF")
+plt.title("Probability Mass Function (PMF)")
+plt.xlabel("Net Money")
 plt.ylabel("Probability")
-plt.title("Probability Distribution of Net Money After 4 Tosses")
-plt.xticks(sorted(probabilities.keys()))
-plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.grid(alpha=0.5)
+plt.legend()
+
+# Plot CDF
+plt.subplot(2, 1, 2)
+plt.step(values, cdf, where='post', color='green', label="CDF")
+plt.title("Cumulative Distribution Function (CDF)")
+plt.xlabel("Net Money")
+plt.ylabel("Cumulative Probability")
+plt.grid(alpha=0.5)
+plt.legend()
+
+# Show plots
+plt.tight_layout()
 plt.show()
 
