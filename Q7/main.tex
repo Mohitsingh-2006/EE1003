@@ -120,132 +120,67 @@ Since the coin is fair, the probability of each outcome is $ \frac{1}{16} $. The
 \textbf{CODING LOGIC:-}
 
 
+\textbf{Bernoulli Random Variable for Coin Toss}\\
+Let the outcome of each coin toss be represented by a Bernoulli random variable \( X \), where:
 
-A fair coin is tossed 4 times, and the outcomes are:
-\begin{itemize}
-    \item Heads $(H)$: Gain Rs.1.
-    \item Tails $(T)$: Lose Rs.1.50.
-\end{itemize}
-
-Define $X_i$ as the random variable for the net money from the $i$-th toss:
-\begin{align}
-X_i =
-\begin{cases}
-1, & \text{if Head (H)} \quad \big(P(X_i = 1) = 0.5\big) \\
--1.5, & \text{if Tail (T)} \quad \big(P(X_i = -1.5) = 0.5\big)
+\[
+X = 
+\begin{cases} 
+1 & \text{if the toss is a head (H)} \\
+0 & \text{if the toss is a tail (T)}
 \end{cases}
+\]
+
+Since the coin is fair, the probability of getting heads or tails is:
+
+\begin{align}
+P(X = 1) = P(X = 0) = \frac{1}{2}
 \end{align}
 
-The total net money after 4 tosses is:
-\begin{align}
-S = \sum_{i=1}^4 X_i
-\end{align}
+\textbf{New Random Variable for Money}\\
+Let the random variable \( Y \) represent the amount of money the person wins or loses. For each toss:
 
-\textbf{Z-Transform of a Single Toss}
-
-The Z-transform of a random variable is defined as:
-\begin{align}
-G_X(z) = \mathbb{E}[z^X]
-\end{align}
-where $\mathbb{E}[\cdot]$ is the expectation operator. For $X_i$, the Z-transform is:
-\begin{align}
-G_{X_i}(z) = P(X_i = 1)z^1 + P(X_i = -1.5)z^{-1.5}\\
-G_{X_i}(z) = 0.5z + 0.5z^{-1.5}
-\end{align}
-
-\textbf{Z-Transform of Total Net Money}
-
-Since the tosses are independent, the Z-transform of the total net money $S$ is the product of the Z-transforms of individual tosses:
-\begin{align}
-G_S(z) = \big(G_{X_i}(z)\big)^4 \\
-G_S(z) = \big(0.5z + 0.5z^{-1.5}\big)^4
-\end{align}
-
-\textbf{Expansion of the Z-Transform}
-
-Using the binomial theorem, expand $G_S(z)$:
-\begin{align}
-G_S(z) = \sum_{k=0}^4 \binom{4}{k} \big(0.5z\big)^k \big(0.5z^{-1.5}\big)^{4-k} \\
-G_S(z) = \sum_{k=0}^4 \binom{4}{k} (0.5)^4 z^{k - 1.5(4-k)} \\
-G_S(z) = \sum_{k=0}^4 \binom{4}{k} (0.5)^4 z^{2.5k - 6}
-\end{align}
-
-The coefficients of $z^m$ in this expansion represent the probabilities $P(S = m)$, i.e., the PMF.
-
-\textbf{Net Money Values and PMF}
-
-The possible net money values are:
-\begin{align}
-S \in \{-6, -3.5, -1, 1.5, 4\}
-\end{align}
-
-Substituting these values into the expansion of $G_S(z)$, the probabilities are:
-\begin{align}
-P(S = -6) = \frac{1}{16}, \quad P(S = -3.5) = \frac{4}{16}, \quad P(S = -1) = \frac{6}{16}, \quad P(S = 1.5) = \frac{4}{16}, \quad P(S = 4) = \frac{1}{16}
-\end{align}
-
-Thus, the PMF is:
-\begin{align}
-P(S = x) =
-\begin{cases}
-\frac{1}{16}, & x = -6 \\
-\frac{4}{16}, & x = -3.5 \\
-\frac{6}{16}, & x = -1 \\
-\frac{4}{16}, & x = 1.5 \\
-\frac{1}{16}, & x = 4 \\
-0, & \text{otherwise}
+\[
+Y = 
+\begin{cases} 
+1 & \text{if the toss is a head (H)} \\
+-1.5 & \text{if the toss is a tail (T)}
 \end{cases}
-\end{align}
+\]
 
+\textbf{Money After Four Tosses}\\
+Let the number of heads in the four tosses be $ k $, where $ k $ can range from 0 to 4. The total money $ M(k) $ after $k $ heads is the sum of the individual amounts for each toss.
 
-
-\textbf{CDF of $S$}
-
-The Cumulative Distribution Function (CDF) is defined as:
 \begin{align}
-F(x) = P(S \leq x) = \sum_{k \leq x} P(S = k)
+M(k) = \text{(Amount from Heads)} + \text{(Amount from Tails)} = k \times 1 + (4 - k) \times (-1.5)\\
+M(k) = k - 1.5(4 - k) = k - 6 + 1.5k = 2.5k - 6
 \end{align}
 
-The possible values of $S$ and the corresponding CDF values are:
-\begin{itemize}
-    \item For $x < -6$:
-    \begin{align}
-    F(x) = 0
-    \end{align}
-    \item For \(-6 \leq x < -3.5\):
-    \begin{align}
-    F(x) = P(S = -6) = \frac{1}{16}
-    \end{align}
-    \item For \(-3.5 \leq x < -1\):
-    \begin{align}
-    F(x) = P(S = -6) + P(S = -3.5) = \frac{1}{16} + \frac{4}{16} = \frac{5}{16}
-    \end{align}
-    \item For \(-1 \leq x < 1.5\):
-    \begin{align}
-    F(x) = P(S = -6) + P(S = -3.5) + P(S = -1) = \frac{1}{16} + \frac{4}{16} + \frac{6}{16} = \frac{11}{16}
-    \end{align}
-    \item For \(1.5 \leq x < 4\):
-    \begin{align}
-    F(x) = P(S = -6) + P(S = -3.5) + P(S = -1) + P(S = 1.5) = \frac{1}{16} + \frac{4}{16} + \frac{6}{16} + \frac{4}{16} = \frac{15}{16}
-    \end{align}
-    \item For \(x \geq 4\):
-    \begin{align}
-    F(x) = 1
-    \end{align}
-\end{itemize}
+The possible values of $ M(k) $ are:
+- For $ k = 0 $: $ M(0) = -6 $
+- For $ k = 1 $: $ M(1) = -3.5 $
+- For $ k = 2 $: $ M(2) = -1 $
+- For $ k = 3 $: $ M(3) = 1.5 $
+- For $ k = 4 $: $ M(4) = 4 $
 
-Thus, the CDF is:
+\textbf{Probability Mass Function (PMF)}\\
+The PMF of the random variable \( Y \) gives the probabilities of each possible amount of money:
+
 \begin{align}
-F(x) =
-\begin{cases}
-0, & x < -6 \\
-\frac{1}{16}, & -6 \leq x < -3.5 \\
-\frac{5}{16}, & -3.5 \leq x < -1 \\
-\frac{11}{16}, & -1 \leq x < 1.5 \\
-\frac{15}{16}, & 1.5 \leq x < 4 \\
-1, & x \geq 4
-\end{cases}
+P(M = -6) = \frac{1}{16},\\ P(M = -3.5) = \frac{4}{16},\\ P(M = -1) = \frac{6}{16}, \\ P(M = 1.5) = \frac{4}{16}, \\ P(M = 4) = \frac{1}{16}
 \end{align}
+
+\textbf{Cumulative Distribution Function (CDF)}\\
+The CDF gives the probability that the random variable takes a value less than or equal to a particular amount of money. The CDF values are:
+
+\begin{align}
+P(M \leq -6) = \frac{1}{16}\\
+P(M \leq -3.5) = \frac{5}{16}\\
+P(M \leq -1) = \frac{11}{16}\\
+P(M \leq 1.5) = \frac{15}{16}\\
+P(M \leq 4) = 1
+\end{align}
+
 
 \begin{figure}[h!]
    \centering
