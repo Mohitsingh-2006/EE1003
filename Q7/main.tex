@@ -134,47 +134,62 @@ X =
 Since the coin is fair, the probability of getting heads or tails is:
 
 \begin{align}
-P(X = 1) = P(X = 0) = \frac{1}{2}
+  p_X\brak{x} = \begin{cases}
+    \frac{1}{2} & x = 0\\
+    \frac{1}{2} & x = 1
+  \end{cases}
 \end{align}
+\textbf{Finding the \( z \)-Transform of a Single Toss}
 
- \textbf{Probability Generating Function}
-
-The probability generating function of a discrete random variable \( X \) is defined as:
+The moment generating function (MGF) for one coin toss \( X_i \) is:
 \begin{align}
-G(z) = \mathbb{E}[z^X] = \sum_{k=0}^{4} P(X = k) z^k
-\end{align}
-Since \( X \) follows a binomial distribution, the probability of having exactly \( k \) heads (successes) in 4 tosses is given by:
-\begin{align}
-P(X = k) = \binom{4}{k} \left( \frac{1}{2} \right)^4
-\end{align}
-Thus, the PGF becomes:
-\begin{align}
-G(z) = \sum_{k=0}^{4} \binom{4}{k} \left( \frac{1}{2} \right)^4 z^k = \frac{1}{16} \sum_{k=0}^{4} \binom{4}{k} z^k
+M_{X_i}(z) = \sum_{k=-\infty}^{\infty} p_{X_i}(n) z^{-k}
 \end{align}
 
- \textbf{Simplifying the Expression Using the Binomial Theorem}
+Since \( X_i \) takes values 0 and 1, we sum over these cases:
+\begin{align}
+M_{X_i}(z) = p z^{-1} + (1 - p)
+\end{align}
 
-Using the binomial theorem, we simplify the PGF expression. The binomial theorem states that:
+For a fair coin where \( p = 0.5 \), this simplifies to:
+\begin{align}
+M_{X_i}(z) = 0.5z^{-1} + 0.5
+\end{align}
+
+\textbf{Extending to 4 Tosses (Binomial Distribution)}
+
+Since the total number of heads in 4 tosses follows a binomial distribution, the moment generating function for \( X \) is:
+\begin{align}
+M_X(z) = \prod_{i=1}^{4} M_{X_i}(z) \\
+M_X(z) = \left( 0.5z^{-1} + 0.5 \right)^4
+\end{align}
+
+\textbf{Step 4: Expanding Using Binomial Theorem}
+
+Using the binomial theorem:
 \begin{align}
 (a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^k b^{n-k}
 \end{align}
-Let \( a = 0.5z \) and \( b = 0.5 \). Then:
+where \( a = 0.5z^{-1} \) and \( b = 0.5 \), we get:
 \begin{align}
-G(z) = (0.5z + 0.5)^4
+M_X(z) = \sum_{k=0}^{4} \binom{4}{k} (0.5)^4 z^{-k}
 \end{align}
 
-Thus, the probability generating function for the binomial distribution is:
+Since \( (0.5)^4 = \frac{1}{16} \), we simplify:
 \begin{align}
-G(z) = (0.5z + 0.5)^4
+M_X(z) = \sum_{k=0}^{4} \binom{4}{k} \frac{z^{-k}}{16}
 \end{align}
 
-\textbf{Extracting the Binomial PMF}
-
-The probability mass function (PMF) is obtained by expanding \( G(z) \). The coefficient of \( z^k \) in the expansion gives the probability \( P(X = k) \):
+Expanding the binomial coefficients:
 \begin{align}
-P(X = k) = \binom{4}{k} \left( \frac{1}{2} \right)^4
+M_X(z) = \frac{1}{16} \left( z^{-0} + 4z^{-1} + 6z^{-2} + 4z^{-3} + z^{-4} \right) \\
+M_X(z) = \frac{1}{16} + \frac{4}{16}z^{-1} + \frac{6}{16}z^{-2} + \frac{4}{16}z^{-3} + \frac{1}{16}z^{-4}
 \end{align}
-This is the PMF for the number of heads in 4 coin tosses.
+
+The coefficient of \( z^{-k} \) gives the probability \( P(X = k) \), which corresponds to the binomial probability mass function (PMF):
+\begin{align}
+P(X = k) = \binom{4}{k} (0.5)^4
+\end{align}
 
 \textbf{Money Calculation}
 
