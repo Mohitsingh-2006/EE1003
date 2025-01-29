@@ -164,7 +164,7 @@ M_X(z) = \prod_{i=1}^{4} M_{X_i}(z) \\
 M_X(z) = \left( 0.5z^{-1} + 0.5 \right)^4
 \end{align}
 
-\textbf{Step 4: Expanding Using Binomial Theorem}
+\textbf{Expanding Using Binomial Theorem}
 
 Using the binomial theorem:
 \begin{align}
@@ -207,23 +207,31 @@ where \( k \) is the number of heads. The possible amounts of money are:
 \end{itemize}
 \textbf{PMF for Money \( M(k) \)}
 
-\begin{itemize}
-    \item \( P(M = -6) = P(X = 0) = \frac{1}{16} \)
-    \item \( P(M = -3.5) = P(X = 1) = \frac{4}{16} \)
-    \item \( P(M = -1) = P(X = 2) = \frac{6}{16} \)
-    \item \( P(M = 1.5) = P(X = 3) = \frac{4}{16} \)
-    \item \( P(M = 4) = P(X = 4) = \frac{1}{16} \)
-\end{itemize}
+\[
+p_X(x) =
+\begin{cases} 
+\frac{1}{16}, & x = 0 \\ 
+\frac{4}{16}, & x = 1 \\ 
+\frac{6}{16}, & x = 2 \\ 
+\frac{4}{16}, & x = 3 \\ 
+\frac{1}{16}, & x = 4 
+\end{cases}
+\]
+
 
  \textbf{CDF for Money \( M(k) \)}
 
-\begin{align}
-P(M \leq -6) = P(X = 0) = \frac{1}{16} \\
-P(M \leq -3.5)   = \frac{5}{16}\\
-P(M \leq -1)  = \frac{11}{16}\\
-P(M \leq 1.5) =  \frac{15}{16}\\
-P(M \leq 4)  = 1
-\end{align}
+\[
+p_X(x) =
+\begin{cases} 
+\frac{1}{16}, & x \leq 0 \\ 
+\frac{5}{16}, & x \leq 1 \\ 
+\frac{11}{16}, & x \leq 2 \\ 
+\frac{15}{16}, & x \leq 3 \\ 
+1, & x \leq 4 
+\end{cases}
+\]
+
 
 
 \begin{figure}[h!]
